@@ -9,9 +9,7 @@ class TicketTypeRequestTest {
     @Test
     public void testNumOfTicketsAsNegative() {
 
-        InvalidPurchaseException exception = assertThrows(InvalidPurchaseException.class, () -> {
-            new TicketTypeRequest(TicketTypeRequest.Type.ADULT, -1);
-        });
+        InvalidPurchaseException exception = assertThrows(InvalidPurchaseException.class, () -> new TicketTypeRequest(TicketTypeRequest.Type.ADULT, -1));
 
         assertEquals("Number of tickets cannot be negative", exception.getMessage());
     }

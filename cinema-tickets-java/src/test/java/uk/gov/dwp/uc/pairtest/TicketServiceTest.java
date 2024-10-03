@@ -35,9 +35,7 @@ public class TicketServiceTest {
     public void testPurchaseTicketsExceedsLimit() {
         TicketTypeRequest adultRequest = new TicketTypeRequest(TicketTypeRequest.Type.ADULT, 26);
 
-        InvalidPurchaseException exception = assertThrows(InvalidPurchaseException.class, () -> {
-            ticketService.purchaseTickets(1L, adultRequest);
-        });
+        InvalidPurchaseException exception = assertThrows(InvalidPurchaseException.class, () -> ticketService.purchaseTickets(1L, adultRequest));
 
         assertEquals("Cannot purchase more than 25 tickets", exception.getMessage());
     }
@@ -46,9 +44,7 @@ public class TicketServiceTest {
     public void testPurchaseChildTicketsWithoutAdult() {
         TicketTypeRequest childRequest = new TicketTypeRequest(TicketTypeRequest.Type.CHILD, 2);
 
-        InvalidPurchaseException exception = assertThrows(InvalidPurchaseException.class, () -> {
-            ticketService.purchaseTickets(1L, childRequest);
-        });
+        InvalidPurchaseException exception = assertThrows(InvalidPurchaseException.class, () -> ticketService.purchaseTickets(1L, childRequest));
 
         assertEquals("Child and Infant tickets cannot be purchased without an Adult ticket", exception.getMessage());
     }
@@ -57,9 +53,7 @@ public class TicketServiceTest {
     public void testPurchaseInfantTicketsWithoutAdult() {
         TicketTypeRequest infantRequest = new TicketTypeRequest(TicketTypeRequest.Type.INFANT, 1);
 
-        InvalidPurchaseException exception = assertThrows(InvalidPurchaseException.class, () -> {
-            ticketService.purchaseTickets(1L, infantRequest);
-        });
+        InvalidPurchaseException exception = assertThrows(InvalidPurchaseException.class, () -> ticketService.purchaseTickets(1L, infantRequest));
 
         assertEquals("Child and Infant tickets cannot be purchased without an Adult ticket", exception.getMessage());
     }
@@ -68,9 +62,7 @@ public class TicketServiceTest {
     public void testPurchaseWithInvalidAccount() {
         TicketTypeRequest adultRequest = new TicketTypeRequest(TicketTypeRequest.Type.ADULT, 1);
 
-        InvalidPurchaseException exception = assertThrows(InvalidPurchaseException.class, () -> {
-            ticketService.purchaseTickets(null, adultRequest);
-        });
+        InvalidPurchaseException exception = assertThrows(InvalidPurchaseException.class, () -> ticketService.purchaseTickets(null, adultRequest));
 
         assertEquals("Invalid account ID", exception.getMessage());
     }
